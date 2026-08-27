@@ -3,7 +3,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/unmev/douyin-auto-fire?style=flat-square)](https://github.com/unmev/douyin-auto-fire/stargazers)
 ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=unmev.douyin-auto-fire)
 
-> 定时自动向抖音好友发送消息，保持火花不断。基于 Playwright 模拟真实浏览器操作，可使用 GitHub Actions、云服务器或 Windows 电脑定时运行。
+> 定时自动向抖音好友发送消息，保持火花不断。基于 Playwright 模拟真实浏览器操作，可使用 GitHub  Actions、云服务器或 Windows 电脑定时运行。
 
 ![douyin-auto-fire-banner.svg](https://img.908988.xyz/file/教程/douyin-auto-fire/5pdab8It.svg)
 
