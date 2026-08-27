@@ -8,8 +8,8 @@ on:
         type: boolean
         default: false
   schedule:
-    - cron:  "0 12 * * *"
-      
+    - cron:  "17 04 * * *"
+      timezone: "Asia/Shanghai"
 
 concurrency:
   group: douyin-daily-sender
