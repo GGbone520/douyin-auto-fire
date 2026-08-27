@@ -8,7 +8,7 @@ on:
         type: boolean
         default: false
   schedule:
-    - cron: "0 07 * * *"          # 改为 7:00 触发
+    - cron: "30 09 * * *"
       timezone: "Asia/Shanghai"
 
 concurrency:
@@ -18,7 +18,7 @@ concurrency:
 jobs:
   send:
     runs-on: ubuntu-latest
-    timeout-minutes: 90           # 超时增加到 90 分钟，预留随机延迟时间
+    timeout-minutes: 30
     permissions:
       contents: read
     env:
@@ -34,21 +34,9 @@ jobs:
           python-version: "3.11"
       - run: pip install -r requirements.txt
       - run: python -m playwright install --with-deps chromium
-
       - name: Write protected configuration
         shell: bash
         run: printf '%s' "$DOUYIN_CONFIG" > config.json
-
-      # ---------- 新增：随机延迟步骤（仅定时触发时执行） ----------
-      - name: Random delay for scheduled runs
-        if: github.event_name == 'schedule'
-        shell: bash
-        run: |
-          DELAY=$(( RANDOM % 3600 ))   # 0~3599 秒
-          echo "随机延迟 ${DELAY} 秒"
-          sleep ${DELAY}
-      # ------------------------------------------------------------
-
       - name: Write multi-account configuration
         shell: bash
         env:
@@ -117,7 +105,6 @@ jobs:
               encoding="utf-8",
           )
           PY
-
       - name: Run
         shell: bash
         run: |
@@ -126,7 +113,6 @@ jobs:
           else
             python run.py
           fi
-
       - name: Upload diagnostics
         if: failure()
         uses: actions/upload-artifact@v4
